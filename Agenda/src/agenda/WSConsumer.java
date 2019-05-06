@@ -152,7 +152,8 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneImpegni/"
+            String url = prefix
+                    +"gestioneImpegni/"
                     + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")

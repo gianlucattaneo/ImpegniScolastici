@@ -17,37 +17,37 @@ public class Agenda {
     
     public static void addImpegno(){
         System.out.println("Scrivi il nome dell'impegno");
-        nomeImpegno = input.nextLine();
+        nomeImpegno = input.next();
         System.out.println("Scrivi la descrizione dell'impegno");
-        descrizione = input.nextLine();
+        descrizione = input.next();
         System.out.println("Scrivi il tipo dell'impegno");
-        tipo = input.nextLine();
+        tipo = input.next();
         System.out.println("Scrivi la data dell'impegno");
-        data = input.nextLine();
+        data = input.next();
         System.out.println("Scrivi il ora dell'impegno");
-        ora = input.nextLine();
+        ora = input.next();
         webService.addImpegno(nomeImpegno, descrizione, tipo, data, ora);
         webService.printResult();
     }
     public static void deleteImpegno(){
         System.out.println("Scrivi l'id dell'impegno da eliminare");
-        id = input.nextLine();
+        id = input.next();
         webService.deleteImpegno(id);
         webService.printResult();
     }
     public static void updateImpegno(){
         System.out.println("Scrivi l'id dell'impegno da modificare");
-        id = input.nextLine();
+        id = input.next();
         System.out.println("Scrivi il nome dell'impegno");
-        nomeImpegno = input.nextLine();
+        nomeImpegno = input.next();
         System.out.println("Scrivi la descrizione dell'impegno");
-        descrizione = input.nextLine();
+        descrizione = input.next();
         System.out.println("Scrivi il tipo dell'impegno");
-        tipo = input.nextLine();
+        tipo = input.next();
         System.out.println("Scrivi la data dell'impegno");
-        data = input.nextLine();
+        data = input.next();
         System.out.println("Scrivi il ora dell'impegno");
-        ora = input.nextLine();
+        ora = input.next();
         webService.updateImpegno(nomeImpegno, descrizione, tipo, data, ora, id);
         webService.printResult();
     }
@@ -91,14 +91,14 @@ public class Agenda {
     
 
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        
+        do{
         System.out.println("BENVENUTO NELL'AGENDA");
         System.out.println("1 - Effettua il login");
         System.out.println("2 - Effettua la registrazione");
         System.out.println("0 - Esci");
         scelta = input.nextInt();
         
-        do{
+        
         switch (scelta) {
             case 1: {
                 System.out.println("Username o email:");
