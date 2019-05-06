@@ -32,13 +32,15 @@ public class Agenda {
                 String username=input.next();
                 System.out.println("Inserisci la password:");
                 String password=input.next();
-                System.out.println("Inserisci la mail:");
+                System.out.println("Inserisci la tua email:");
                 String email=input.next();
-                System.out.println("Inserisci la nome:");
+                System.out.println("Inserisci il tuo nome:");
                 String nomeUtente=input.next();
-                System.out.println("Inserisci il cognome:");
+                System.out.println("Inserisci il tuo cognome:");
                 String cognomeUtente=input.next();
-                webService.addUtente(username, password, email, nomeUtente, cognomeUtente, email);
+                System.out.println("Inserisci la tua classe:");
+                String classe=input.next();
+                webService.addUtente(username, password, email, nomeUtente, cognomeUtente, classe);
                 webService.printResult();
             }
         }

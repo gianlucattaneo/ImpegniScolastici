@@ -27,7 +27,7 @@ public class WSConsumer {
 
     private String result;
 
-    private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/gestioneImpegni/";
+    private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/";
 
     WSConsumer() {
         result = "";
@@ -41,9 +41,6 @@ public class WSConsumer {
         int status = 0;
         result = "";
         
-        byte[] bytesPassword = password.getBytes("UTF-8");
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        String passwordHashed=new String(md.digest(bytesPassword));
         try {
             URL serverURL;
             HttpURLConnection service;
@@ -52,7 +49,7 @@ public class WSConsumer {
             String url = prefix+"gestioneUtente/"
                     + "addUtente.php?"
                     + "username=" + URLEncoder.encode(username, "UTF-8")
-                    + "&password=" + URLEncoder.encode(passwordHashed, "UTF-8")
+                    + "&password=" + URLEncoder.encode(password, "UTF-8")
                     + "&email=" + URLEncoder.encode(email, "UTF-8")
                     + "&nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&cognome=" + URLEncoder.encode(cognome, "UTF-8")
