@@ -345,6 +345,57 @@ public class WSConsumer {
         }
         return status;
     }
+    
+    public int subscribeImepgno(String utente, String impegno){
+        int status = 0;
+        result = "";
+
+        try {
+            URL serverURL;
+            HttpURLConnection service;
+            BufferedReader input;
+
+            String url = prefix
+                    + "gestioneImpegni/"
+                    + "subscribeToImpegno.php?"
+                    + "utente=" + URLEncoder.encode(utente, "UTF-8")
+                    + "&impegno=" + URLEncoder.encode(impegno, "UTF-8");
+            serverURL = new URL(url);
+            System.out.println(url);
+            service = (HttpURLConnection) serverURL.openConnection();
+            // impostazione header richiesta . ftp.gestioneagenda.altervista.org
+            service.setRequestProperty("Host", "ftp.gestioneagenda.altervista.org");
+            service.setRequestProperty("Accept", "application/text");
+            service.setRequestProperty("Accept-Charset", "UTF-8");
+            // impostazione metodo di richiesta GET
+            service.setRequestMethod("GET");
+            // attivazione ricezione
+            service.setDoInput(true);
+            // connessione al web-service
+            service.connect();
+            // verifica stato risposta
+            status = service.getResponseCode();
+            if (status != 200) {
+                return status; // non OK
+            }
+            // apertura stream di ricezione da risorsa web
+            input = new BufferedReader(new InputStreamReader(service.getInputStream(), "UTF-8"));
+            // ciclo di lettura da web e scrittura in result
+            String line;
+            while ((line = input.readLine()) != null) {
+                result += line + "\n";
+            }
+            input.close();
+
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(WSConsumer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WSConsumer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(WSConsumer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
 
     //in teoria questo non viene mai richiamato
     public int get(String paramater, String value) {
