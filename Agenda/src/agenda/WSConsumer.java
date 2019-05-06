@@ -306,7 +306,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix
                     + "gestioneImpegni/"
                     + "subscribeToImpegno.php?"
                     + "utente=" + URLEncoder.encode(utente, "UTF-8")
