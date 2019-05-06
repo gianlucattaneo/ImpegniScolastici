@@ -10,5 +10,7 @@ package agenda;
  * @author gianluca
  */
 public class Utente {
-    
+    Utente(){
+        //ciao
+    }
 }
