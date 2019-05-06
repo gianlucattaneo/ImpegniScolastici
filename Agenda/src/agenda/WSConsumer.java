@@ -25,7 +25,7 @@ public class WSConsumer {
 
     private String result;
     
-    private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/";
+    private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/gestioneImpegni/";
 
     WSConsumer() {
         result = "";
