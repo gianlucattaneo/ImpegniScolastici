@@ -29,16 +29,18 @@ public class Agenda {
             }
             case 2:{
                 System.out.println("Inserisci l'username:");
-                String username=input.nextLine();
+                String username=input.next();
                 System.out.println("Inserisci la password:");
-                String password=input.nextLine();
-                System.out.println("Inserisci la mail:");
-                String email=input.nextLine();
-                System.out.println("Inserisci la nome:");
-                String nomeUtente=input.nextLine();
-                System.out.println("Inserisci il cognome:");
-                String cognomeUtente=input.nextLine();
-                webService.addUtente(username, password, email, nomeUtente, cognomeUtente, email);
+                String password=input.next();
+                System.out.println("Inserisci la tua email:");
+                String email=input.next();
+                System.out.println("Inserisci il tuo nome:");
+                String nomeUtente=input.next();
+                System.out.println("Inserisci il tuo cognome:");
+                String cognomeUtente=input.next();
+                System.out.println("Inserisci la tua classe:");
+                String classe=input.next();
+                webService.addUtente(username, password, email, nomeUtente, cognomeUtente, classe);
                 webService.printResult();
             }
         }
