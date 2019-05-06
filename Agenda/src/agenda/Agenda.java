@@ -1,5 +1,7 @@
 package agenda;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 /**
@@ -9,10 +11,10 @@ import java.util.Scanner;
 
 public class Agenda {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         WSConsumer webService = new WSConsumer();
-        int scelta = 657894;
-        String nome="",descrizione="",tipo="",data="",ora="",id="";
+        int scelta = -1;
+        String nomeImpegno="",descrizione="",tipo="",data="",ora="",id="";
         Scanner input = new Scanner(System.in);
         System.out.println("BENVENUTO NEL SISTEMA DI CALENDARIO");
         System.out.println("1 - Effettua il login");
@@ -20,10 +22,26 @@ public class Agenda {
         scelta=input.nextInt();
         switch(scelta){
             case 1:{
-                
+                System.out.println("Username:");
+                String username=input.nextLine();
+                System.out.println("Username:");
+                String password=input.nextLine();
+            }
+            case 2:{
+                System.out.println("Inserisci l'username:");
+                String username=input.nextLine();
+                System.out.println("Inserisci la password:");
+                String password=input.nextLine();
+                System.out.println("Inserisci la mail:");
+                String email=input.nextLine();
+                System.out.println("Inserisci la nome:");
+                String nomeUtente=input.nextLine();
+                System.out.println("Inserisci il cognome:");
+                String cognomeUtente=input.nextLine();
+                webService.addUtente(username, password, email, nomeUtente, cognomeUtente, email);
+                webService.printResult();
             }
         }
-        System.out.println("Username:");
         
         do{
         System.out.println("1- addImpegno");
@@ -39,7 +57,7 @@ public class Agenda {
         switch(scelta){
             case 1:{
                 System.out.println("Scrivi il nome dell'impegno");
-                nome = input.nextLine();
+                nomeImpegno = input.nextLine();
                 System.out.println("Scrivi la descrizione dell'impegno");
                 descrizione = input.nextLine();
                 System.out.println("Scrivi il tipo dell'impegno");
@@ -48,7 +66,7 @@ public class Agenda {
                 data = input.nextLine();
                 System.out.println("Scrivi il ora dell'impegno");
                 ora = input.nextLine();
-                webService.addImpegno(nome, descrizione, tipo, data, ora);
+                webService.addImpegno(nomeImpegno, descrizione, tipo, data, ora);
                 webService.printResult();
                 break;
             }
@@ -64,7 +82,7 @@ public class Agenda {
                 System.out.println("Scrivi l'id dell'impegno da modificare");
                 id = input.nextLine();
                 System.out.println("Scrivi il nome dell'impegno");
-                nome = input.nextLine();
+                nomeImpegno = input.nextLine();
                 System.out.println("Scrivi la descrizione dell'impegno");
                 descrizione = input.nextLine();
                 System.out.println("Scrivi il tipo dell'impegno");
@@ -73,7 +91,7 @@ public class Agenda {
                 data = input.nextLine();
                 System.out.println("Scrivi il ora dell'impegno");
                 ora = input.nextLine();
-                webService.updateImpegno(nome, descrizione, tipo, data, ora, id);
+                webService.updateImpegno(nomeImpegno, descrizione, tipo, data, ora, id);
                 webService.printResult();
                 break;
             }
