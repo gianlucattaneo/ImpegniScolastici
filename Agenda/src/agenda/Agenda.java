@@ -14,6 +14,17 @@ public class Agenda {
         int scelta = 657894;
         String nome="",descrizione="",tipo="",data="",ora="",id="";
         Scanner input = new Scanner(System.in);
+        System.out.println("BENVENUTO NEL SISTEMA DI CALENDARIO");
+        System.out.println("1 - Effettua il login");
+        System.out.println("2 - Effettua la registrazione");
+        scelta=input.nextInt();
+        switch(scelta){
+            case 1:{
+                
+            }
+        }
+        System.out.println("Username:");
+        
         do{
         System.out.println("1- addImpegno");
         System.out.println("2- deleteImpegno");
