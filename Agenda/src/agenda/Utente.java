@@ -10,5 +10,7 @@ package agenda;
  * @author gianluca
  */
 public class Utente {
-    
+    String prova="fjhkbadsalbf";
+    String prov3="fjhkbadsalbf";
+    String prov4="fjhkbadsalbf";
 }
