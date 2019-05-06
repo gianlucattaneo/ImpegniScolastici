@@ -22,10 +22,12 @@ public class Agenda {
         scelta=input.nextInt();
         switch(scelta){
             case 1:{
-                System.out.println("Username:");
-                String username=input.nextLine();
-                System.out.println("Username:");
-                String password=input.nextLine();
+                System.out.println("Username o email:");
+                String username_email =input.next();
+                System.out.println("password:");
+                String password=input.next();
+                webService.verificaUtente(username_email, password);
+                webService.printResult();
             }
             case 2:{
                 System.out.println("Inserisci l'username:");
