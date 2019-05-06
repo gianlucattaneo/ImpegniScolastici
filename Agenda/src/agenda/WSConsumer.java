@@ -27,8 +27,7 @@ public class WSConsumer {
 
     private String result;
 
-    private String prefixImpegni = "http://gestioneagenda.altervista.org/tapschoolws/gestioneImpegni/";
-    private String prefixUtente = "http://gestioneagenda.altervista.org/tapschoolws/gestioneImpegni/";
+    private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/gestioneImpegni/";
 
     WSConsumer() {
         result = "";
@@ -50,7 +49,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneUtente/"
                     + "addUtente.php?"
                     + "username=" + URLEncoder.encode(username, "UTF-8")
                     + "&password=" + URLEncoder.encode(passwordHashed, "UTF-8")
@@ -105,7 +104,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneImpegni/"
                     + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")
@@ -159,7 +158,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneImpegni/"
                     + "deleteImpegno.php?"
                     + "id=" + URLEncoder.encode(id, "UTF-8");
             serverURL = new URL(url);
@@ -208,7 +207,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneImpegni/"
                     + "updateImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&id=" + URLEncoder.encode(id, "UTF-8")
@@ -262,7 +261,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneImpegni/"
                     + "getAllImpegno.php";
             serverURL = new URL(url);
             System.out.println(url);
@@ -311,7 +310,7 @@ public class WSConsumer {
             HttpsURLConnection service;
             BufferedReader input;
 
-            String url = prefixImpegni
+            String url = prefix+"gestioneImpegni/"
                     + URLEncoder.encode(paramater, "UTF-8") + "="
                     + URLEncoder.encode(value, "UTF-8");
             serverURL = new URL(url);
