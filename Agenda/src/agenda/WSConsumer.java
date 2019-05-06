@@ -45,7 +45,8 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneUtente/"
+            String url = prefix
+                    +"gestioneUtente/"
                     + "verificaUtente.php?"
                     + "username_email=" + URLEncoder.encode(username_email, "UTF-8")
                     + "&password=" + URLEncoder.encode(password, "UTF-8");
@@ -86,6 +87,7 @@ public class WSConsumer {
         }
         return status;
     }
+    
     public int addUtente(String username, String password, String email, String nome, String cognome, String classe) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         int status = 0;
         result = "";
