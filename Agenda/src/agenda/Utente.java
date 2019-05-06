@@ -13,4 +13,7 @@ public class Utente {
     Utente(){
         //ciao
     }
+    String prova="fjhkbadsalbf";
+    String prov3="fjhkbadsalbf";
+    String prov4="fjhkbadsalbf";
 }
