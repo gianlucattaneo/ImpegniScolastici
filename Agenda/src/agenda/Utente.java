@@ -7,13 +7,31 @@ package agenda;
 
 /**
  *
- * @author gianluca
+ * @author baldassin_matteo
  */
 public class Utente {
-    Utente(){
-        //ciao
+
+    String username;
+    String password;
+    String nome;
+    String cognome;
+
+    public Utente() {
+        username="";
+        password="";
+        nome="";
+        cognome="";
     }
-    String prova="fjhkbadsalbf";
-    String prov3="fjhkbadsalbf";
-    String prov4="fjhkbadsalbf";
+    public Utente(String username, String password, String nome, String cognome) {
+        this.username = username;
+        this.password = password;
+        this.nome = nome;
+        this.cognome = cognome;
+    }
+
+
+    
+    
+    
+
 }
