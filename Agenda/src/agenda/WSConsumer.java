@@ -313,7 +313,7 @@ public class WSConsumer {
             String url = prefix+"gestioneImpegni/"
                     + "getAllImpegno.php";
             serverURL = new URL(url);
-            System.out.println(url);
+            //System.out.println(url);
             service = (HttpURLConnection) serverURL.openConnection();
             // impostazione header richiesta . ftp.gestioneagenda.altervista.org
             service.setRequestProperty("Host", "ftp.gestioneagenda.altervista.org");
