@@ -28,7 +28,7 @@ public class WSConsumer {
     private String result;
 
     private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/";
- 
+
     WSConsumer() {
         result = "";
     }
@@ -37,18 +37,18 @@ public class WSConsumer {
         return result;
 
     }
-    
-    public int verificaUtente(String username_email, String password){
+
+    public int verificaUtente(String username_email, String password) {
         int status = 0;
         result = "";
-        
+
         try {
             URL serverURL;
             HttpURLConnection service;
             BufferedReader input;
 
             String url = prefix
-                    +"gestioneUtente/"
+                    + "gestioneUtente/"
                     + "verificaUtente.php?"
                     + "username_email=" + URLEncoder.encode(username_email, "UTF-8")
                     + "&password=" + URLEncoder.encode(password, "UTF-8");
@@ -89,17 +89,17 @@ public class WSConsumer {
         }
         return status;
     }
-    
+
     public int addUtente(String username, String password, String email, String nome, String cognome, String classe) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         int status = 0;
         result = "";
-        
+
         try {
             URL serverURL;
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneUtente/"
+            String url = prefix + "gestioneUtente/"
                     + "addUtente.php?"
                     + "username=" + URLEncoder.encode(username, "UTF-8")
                     + "&password=" + URLEncoder.encode(password, "UTF-8")
@@ -155,7 +155,7 @@ public class WSConsumer {
             BufferedReader input;
 
             String url = prefix
-                    +"gestioneImpegni/"
+                    + "gestioneImpegni/"
                     + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")
@@ -211,7 +211,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneImpegni/"
+            String url = prefix + "gestioneImpegni/"
                     + "deleteImpegno.php?"
                     + "id=" + URLEncoder.encode(id, "UTF-8");
             serverURL = new URL(url);
@@ -261,7 +261,7 @@ public class WSConsumer {
             BufferedReader input;
 
             String url = prefix
-                    +"gestioneImpegni/"
+                    + "gestioneImpegni/"
                     + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")
@@ -316,7 +316,7 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneImpegni/"
+            String url = prefix + "gestioneImpegni/"
                     + "getAllImpegno.php";
             serverURL = new URL(url);
             System.out.println(url);
@@ -340,35 +340,35 @@ public class WSConsumer {
             input = new BufferedReader(new InputStreamReader(service.getInputStream(), "UTF-8"));
             // ciclo di lettura da web e scrittura in result
             String line;
-            int conta=0;
+            int conta = 0;
             while ((line = input.readLine()) != null) {
                 // contatore per una più facile visualizzazione
                 conta++;
 
                 //creo oggetto JSON con riga ricevuta da webservice
                 JSONObject jsonObject = new JSONObject(line);
-                
-                int ID=jsonObject.getInt("ID");
-                Object nome=jsonObject.get("nome");
-                Object descrizione=jsonObject.get("descrizione");
-                Object data=jsonObject.get("data");
-                Object luogo=jsonObject.get("luogo");
-                Object aule=jsonObject.get("aule");
-                Object oraInizio=jsonObject.get("oraInizio");
-                Object oraFine=jsonObject.get("oraFine");
+
+                int ID = jsonObject.getInt("ID");
+                Object nome = jsonObject.get("nome");
+                Object descrizione = jsonObject.get("descrizione");
+                Object data = jsonObject.get("data");
+                Object luogo = jsonObject.get("luogo");
+                Object aule = jsonObject.get("aule");
+                Object oraInizio = jsonObject.get("oraInizio");
+                Object oraFine = jsonObject.get("oraFine");
                 //scrivo nel terminale
-                System.out.println("------------ELEMENTO "+conta+"------------");
-                System.out.println("ID: "+ID);
-                System.out.println("Nome: "+nome);
-                System.out.println("Descrizione: "+descrizione);
-                System.out.println("Data: "+data.toString());
-                System.out.println("Luogo: "+luogo);
-                System.out.println("Aule: "+aule);
-                System.out.println("Ora Inizio: "+oraInizio);
-                System.out.println("Ora Fine: "+oraFine);
-                
+                System.out.println("------------ELEMENTO " + conta + "------------");
+                System.out.println("ID: " + ID);
+                System.out.println("Nome: " + nome);
+                System.out.println("Descrizione: " + descrizione);
+                System.out.println("Data: " + data.toString());
+                System.out.println("Luogo: " + luogo);
+                System.out.println("Aule: " + aule);
+                System.out.println("Ora Inizio: " + oraInizio);
+                System.out.println("Ora Fine: " + oraFine);
+
                 //vecchia versione, si puo rimuovere
-               //result += line + "\r\n";
+                //result += line + "\r\n";
             }
             input.close();
 
@@ -381,8 +381,8 @@ public class WSConsumer {
         }
         return status;
     }
-    
-    public int subscribeImpegno(String utente, String impegno){
+
+    public int subscribeImpegno(String utente, String impegno) {
         int status = 0;
         result = "";
 
@@ -443,7 +443,7 @@ public class WSConsumer {
             HttpsURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneImpegni/"
+            String url = prefix + "gestioneImpegni/"
                     + URLEncoder.encode(paramater, "UTF-8") + "="
                     + URLEncoder.encode(value, "UTF-8");
             serverURL = new URL(url);
@@ -484,9 +484,17 @@ public class WSConsumer {
 
     void printResult() {
         String[] arrOfStr = result.split("\",\"");
-
         for (int i = 0; i < arrOfStr.length; i++) {
             System.out.println(arrOfStr[i]);
         }
+    }
+
+    String printResultString() {
+        String[] arrOfStr = result.split("\",\"");
+        String result = "";
+        for (int i = 0; i < arrOfStr.length; i++) {
+            result += arrOfStr[i];
+        }
+        return result;
     }
 }
