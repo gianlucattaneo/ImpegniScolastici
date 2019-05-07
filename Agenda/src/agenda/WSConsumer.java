@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 import java.security.*;
-
+import org.json.*;
 
 /**
  *
@@ -28,14 +28,16 @@ public class WSConsumer {
     private String result;
 
     private String prefix = "http://gestioneagenda.altervista.org/tapschoolws/";
-
+ 
     WSConsumer() {
         result = "";
     }
 
     public String getResult() {
         return result;
+
     }
+    
     public int verificaUtente(String username_email, String password){
         int status = 0;
         result = "";
@@ -143,7 +145,7 @@ public class WSConsumer {
         return status;
     }
 
-    public int addImpegno(String nome, String descrizione, String tipo, String data, String ora) {
+    public int addImpegno(String nome, String descrizione, String data, String luogo, String aule, String oraInizio, String oraFine) {
         int status = 0;
         result = "";
 
@@ -157,9 +159,11 @@ public class WSConsumer {
                     + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")
-                    + "&tipo=" + URLEncoder.encode(tipo, "UTF-8")
                     + "&data=" + URLEncoder.encode(data, "UTF-8")
-                    + "&ora=" + URLEncoder.encode(ora, "UTF-8");
+                    + "&luogo=" + URLEncoder.encode(luogo, "UTF-8")
+                    + "&aule=" + URLEncoder.encode(aule, "UTF-8")
+                    + "&oraInizio=" + URLEncoder.encode(oraInizio, "UTF-8")
+                    + "&oraFine=" + URLEncoder.encode(oraFine, "UTF-8");
             serverURL = new URL(url);
             //System.out.println(url); //attivare per debug
             service = (HttpURLConnection) serverURL.openConnection();
@@ -247,7 +251,7 @@ public class WSConsumer {
         return status;
     }
 
-    public int updateImpegno(String nome, String descrizione, String tipo, String data, String ora, String id) {
+    public int updateImpegno(String nome, String descrizione, String data, String luogo, String aule, String oraInizio, String oraFine) {
         int status = 0;
         result = "";
 
@@ -256,14 +260,16 @@ public class WSConsumer {
             HttpURLConnection service;
             BufferedReader input;
 
-            String url = prefix+"gestioneImpegni/"
-                    + "updateImpegno.php?"
+            String url = prefix
+                    +"gestioneImpegni/"
+                    + "addImpegno.php?"
                     + "nome=" + URLEncoder.encode(nome, "UTF-8")
-                    + "&id=" + URLEncoder.encode(id, "UTF-8")
                     + "&descrizione=" + URLEncoder.encode(descrizione, "UTF-8")
-                    + "&tipo=" + URLEncoder.encode(tipo, "UTF-8")
                     + "&data=" + URLEncoder.encode(data, "UTF-8")
-                    + "&ora=" + URLEncoder.encode(ora, "UTF-8");
+                    + "&luogo=" + URLEncoder.encode(luogo, "UTF-8")
+                    + "&aule=" + URLEncoder.encode(aule, "UTF-8")
+                    + "&oraInizio=" + URLEncoder.encode(oraInizio, "UTF-8")
+                    + "&oraFine=" + URLEncoder.encode(oraFine, "UTF-8");
             serverURL = new URL(url);
             System.out.println(url);
             service = (HttpURLConnection) serverURL.openConnection();
@@ -313,7 +319,7 @@ public class WSConsumer {
             String url = prefix+"gestioneImpegni/"
                     + "getAllImpegno.php";
             serverURL = new URL(url);
-            //System.out.println(url);
+            System.out.println(url);
             service = (HttpURLConnection) serverURL.openConnection();
             // impostazione header richiesta . ftp.gestioneagenda.altervista.org
             service.setRequestProperty("Host", "ftp.gestioneagenda.altervista.org");
@@ -334,8 +340,32 @@ public class WSConsumer {
             input = new BufferedReader(new InputStreamReader(service.getInputStream(), "UTF-8"));
             // ciclo di lettura da web e scrittura in result
             String line;
+            int conta=0;
             while ((line = input.readLine()) != null) {
-                result += line + "\n";
+                conta++;
+
+              
+                JSONObject jsonObject = new JSONObject(line);
+                   
+                int ID=jsonObject.getInt("ID");
+                Object nome=jsonObject.get("nome");
+                Object descrizione=jsonObject.get("descrizione");
+                Object data=jsonObject.get("data");
+                Object luogo=jsonObject.get("luogo");
+                Object aule=jsonObject.get("aule");
+                Object oraInizio=jsonObject.get("oraInizio");
+                Object oraFine=jsonObject.get("oraFine");
+                System.out.println("------------ELEMENTO "+conta+"------------");
+                System.out.println("ID: "+ID);
+                System.out.println("Nome: "+nome);
+                System.out.println("Descrizione: "+descrizione);
+                System.out.println("Data: "+data.toString());
+                System.out.println("Luogo: "+luogo);
+                System.out.println("Aule: "+aule);
+                System.out.println("Ora Inizio: "+oraInizio);
+                System.out.println("Ora Fine: "+oraFine);
+
+               //result += line + "\r\n";
             }
             input.close();
 

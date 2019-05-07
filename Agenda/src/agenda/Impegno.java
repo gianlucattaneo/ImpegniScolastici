@@ -11,18 +11,31 @@ import java.util.Date;
 
 /**
  *
- * @author Davide
+ * @author Davide_Pirolo
+ * @author Matteo_Baldassin
  */
 public class Impegno {
-    String descrizione,idCalendario,nome,luogo,aula,nomeCalendario,data;
-    Time oraInizio,oraFine;
-
-    public Impegno(String descrzione, String nomeCalendario, String nome, String lotto, String aula, String data, Time oraInizio, Time oraFine) {
-        this.descrizione = descrzione;
+    String descrizione,idCalendario,nome,luogo,aule,nomeCalendario,data, oraInizio, oraFine;
+    //Time oraInizio,oraFine;
+/*
+    public Impegno(String nomeCalendario, String nome, String descrizione, String data, String luogo, String aule, Time oraInizio, Time oraFine){
+        this.descrizione = descrizione;
         this.nomeCalendario = nomeCalendario;
         this.nome = nome;
-        this.luogo = lotto;
-        this.aula = aula;
+        this.luogo = luogo;
+        this.aule = aule;
+        this.data = data;
+        this.oraInizio = oraInizio;
+        this.oraFine = oraFine;
+        idCalendario="0";
+    }
+    */
+    public Impegno(String nomeCalendario, String nome, String descrizione, String data, String luogo, String aule, String oraInizio, String oraFine){
+        this.descrizione = descrizione;
+        this.nomeCalendario = nomeCalendario;
+        this.nome = nome;
+        this.luogo = luogo;
+        this.aule = aule;
         this.data = data;
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
@@ -31,29 +44,30 @@ public class Impegno {
 
     @Override
     public String toString() {
-        return "Impegno{" + "descrzione=" + descrizione + ", idCalendario=" + idCalendario + ", nome=" + nome + ", luogo=" + luogo + ", aula=" + aula + ", nomeCalendario=" + nomeCalendario + ", data=" + data + ", oraInizio=" + oraInizio + ", oraFine=" + oraFine + '}';
+        return "{" +
+            " descrizione='" + getDescrizione() + "'" +
+            ", idCalendario='" + getIdCalendario() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", luogo='" + getLuogo() + "'" +
+            ", aule='" + getAule() + "'" +
+            ", nomeCalendario='" + getNomeCalendario() + "'" +
+            ", data='" + getData() + "'" +
+            ", oraInizio='" + getOraInizio() + "'" +
+            ", oraFine='" + getOraFine() + "'" +
+            "}";
     }
+
     
-
-    public String getNomeCalendario() {
-        return nomeCalendario;
+    public String getDescrizione() {
+        return this.descrizione;
     }
 
-    public void setNomeCalendario(String nomeCalendario) {
-        this.nomeCalendario = nomeCalendario;
-    }
-    
-        
-    public String getDescrzione() {
-        return descrizione;
-    }
-
-    public void setDescrzione(String descrzione) {
-        this.descrizione = descrzione;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getIdCalendario() {
-        return idCalendario;
+        return this.idCalendario;
     }
 
     public void setIdCalendario(String idCalendario) {
@@ -61,52 +75,61 @@ public class Impegno {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getLotto() {
-        return luogo;
+    public String getLuogo() {
+        return this.luogo;
     }
 
-    public void setLotto(String lotto) {
-        this.luogo = lotto;
+    public void setLuogo(String luogo) {
+        this.luogo = luogo;
     }
 
-    public String getAula() {
-        return aula;
+    public String getAule() {
+        return this.aule;
     }
 
-    public void setAula(String aula) {
-        this.aula = aula;
+    public void setAule(String aule) {
+        this.aule = aule;
+    }
+
+    public String getNomeCalendario() {
+        return this.nomeCalendario;
+    }
+
+    public void setNomeCalendario(String nomeCalendario) {
+        this.nomeCalendario = nomeCalendario;
     }
 
     public String getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(String data) {
         this.data = data;
     }
 
-    public Time getOraInizio() {
-        return oraInizio;
+    public String getOraInizio() {
+        return this.oraInizio;
     }
 
-    public void setOraInizio(Time oraInizio) {
+    public void setOraInizio(String oraInizio) {
         this.oraInizio = oraInizio;
     }
 
-    public Time getOraFine() {
-        return oraFine;
+    public String getOraFine() {
+        return this.oraFine;
     }
 
-    public void setOraFine(Time oraFine) {
+    public void setOraFine(String oraFine) {
         this.oraFine = oraFine;
     }
+    
     
     
 }

@@ -12,14 +12,14 @@ public class Parser {
     private ArrayList<Impegno> corsi;
 
     public Parser() {
-        corsi = new ArrayList();
+        corsi = new ArrayList<>();
     }
 
     public ArrayList<Impegno> parseDocument(String filename) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory;
         DocumentBuilder builder;
         Document document;
-        Element root, element, element2;
+        Element root, element;
         NodeList nodelist;
         Impegno p;
         // creazione dell’albero DOM dal documento XML
@@ -51,7 +51,7 @@ public class Parser {
 
     
     private Impegno getImpegno(Element el, String nomeCalendario) {
-        Impegno p = null;
+        Impegno impegno = null;
 
         // cerco il primo elemento nel primo tr
         //Element elementParent = (Element) el.getParentNode();
@@ -60,25 +60,27 @@ public class Parser {
         String data = el.getElementsByTagName("data").item(0).getTextContent(); //getTextValue(elementParent, "td", 2);
         String luogo = el.getElementsByTagName("luogo").item(0).getTextContent(); //getTextValue(elementParent, "td", 3);
         String aule = el.getElementsByTagName("aule").item(0).getTextContent();
-        String oraInizioS = el.getElementsByTagName("oraInizio").item(0).getTextContent();
-        String oraFineS = el.getElementsByTagName("oraFine").item(0).getTextContent();
+        String oraInizio = el.getElementsByTagName("oraInizio").item(0).getTextContent();
+        String oraFine = el.getElementsByTagName("oraFine").item(0).getTextContent();
         
         /*
         String date[]=dataS.split("/");
         Date data=new Date(Integer.parseInt(date[2]),Integer.parseInt(date[1]),Integer.parseInt(date[0]));
         */
+        /* FUNZIONA MA DA IMPLEMENTARE
         Time oraInizio=null;
         Time oraFine=null;
         if(!oraInizioS.equals("")){
-            String oreInizio[]=oraInizioS.split(":");
+            String oreInizio[]=oraInizio.split(":");
             oraInizio=new Time(Integer.parseInt(oreInizio[0]),Integer.parseInt(oreInizio[1]),0);
-            String oreFine[]=oraFineS.split(":");
+            String oreFine[]=oraFine.split(":");
             oraFine=new Time(Integer.parseInt(oreFine[0]),Integer.parseInt(oreFine[1]),0);
         }
-        
+        */
         //creo l'oggetto del prof
-        p = new Impegno(descrizione,nomeCalendario,nome,luogo,aule,data,oraInizio,oraFine);
-        return p;
+        impegno = new Impegno(nomeCalendario, nome, descrizione, data, luogo, aule, oraInizio, oraFine);
+        return impegno;
+
     }
 
     // restituisce il valore testuale dell’elemento figlio specificato

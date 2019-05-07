@@ -132,7 +132,7 @@ public class NewJFrame extends javax.swing.JFrame {
             
         for(Impegno i:impegni){
             System.out.println(i.toString());
-            webService.addImpegno(i.nome,i.descrizione,"pubblico",i.data,"8:00");
+            //webService.addImpegno(i.nome,i.descrizione,"pubblico",i.data,"8:00");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
