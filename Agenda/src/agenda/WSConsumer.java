@@ -342,11 +342,12 @@ public class WSConsumer {
             String line;
             int conta=0;
             while ((line = input.readLine()) != null) {
+                // contatore per una più facile visualizzazione
                 conta++;
 
-              
+                //creo oggetto JSON con riga ricevuta da webservice
                 JSONObject jsonObject = new JSONObject(line);
-                   
+                
                 int ID=jsonObject.getInt("ID");
                 Object nome=jsonObject.get("nome");
                 Object descrizione=jsonObject.get("descrizione");
@@ -355,6 +356,7 @@ public class WSConsumer {
                 Object aule=jsonObject.get("aule");
                 Object oraInizio=jsonObject.get("oraInizio");
                 Object oraFine=jsonObject.get("oraFine");
+                //scrivo nel terminale
                 System.out.println("------------ELEMENTO "+conta+"------------");
                 System.out.println("ID: "+ID);
                 System.out.println("Nome: "+nome);
@@ -364,7 +366,8 @@ public class WSConsumer {
                 System.out.println("Aule: "+aule);
                 System.out.println("Ora Inizio: "+oraInizio);
                 System.out.println("Ora Fine: "+oraFine);
-
+                
+                //vecchia versione, si puo rimuovere
                //result += line + "\r\n";
             }
             input.close();

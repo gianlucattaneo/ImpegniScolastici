@@ -129,7 +129,7 @@ public class Agenda {
     }
 
     public static void parseImpegno() throws IOException, ParserConfigurationException, SAXException {
-        System.out.println("Iserisci l'URL: ");
+        System.out.println("Inserisci l'URL: ");
         String url = input.readLine();
 
         ArrayList<Impegno> impegni = new ArrayList<>();
@@ -143,8 +143,6 @@ public class Agenda {
             System.out.println("RISULTATO: " + result);
             if (result == 200)
                 System.out.println("Impegno inserito correttamente");
-
-            // webService.addImpegno(i.nome, i.descrizione, "pubblico", i.data, "8:00");
         }
 
     }
