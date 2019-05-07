@@ -161,7 +161,7 @@ public class WSConsumer {
                     + "&data=" + URLEncoder.encode(data, "UTF-8")
                     + "&ora=" + URLEncoder.encode(ora, "UTF-8");
             serverURL = new URL(url);
-            System.out.println(url);
+            //System.out.println(url); //attivare per debug
             service = (HttpURLConnection) serverURL.openConnection();
             // impostazione header richiesta . ftp.gestioneagenda.altervista.org
             service.setRequestProperty("Host", "ftp.gestioneagenda.altervista.org");
@@ -349,7 +349,7 @@ public class WSConsumer {
         return status;
     }
     
-    public int subscribeImepgno(String utente, String impegno){
+    public int subscribeImpegno(String utente, String impegno){
         int status = 0;
         result = "";
 

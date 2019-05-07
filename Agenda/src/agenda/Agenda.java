@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 //import java.util.Scanner;
 
 /**
@@ -19,7 +22,7 @@ public class Agenda {
 //private static Scanner input = new Scanner(System.in);
     private static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, IOException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, IOException, ParserConfigurationException, SAXException {
         do {
             System.out.println("BENVENUTO NELL'AGENDA");
             System.out.println("1 - Effettua il login");
@@ -80,8 +83,13 @@ public class Agenda {
         String data = input.readLine();
         System.out.println("Scrivi il ora dell'impegno");
         String ora = input.readLine();
-        webService.addImpegno(nomeImpegno, descrizione, tipo, data, ora);
+        int result = webService.addImpegno(nomeImpegno, descrizione, tipo, data, ora);
         webService.printResult();
+        System.out.println("RISULTATO: " + result);
+        if (result == 200) {
+            System.out.println("Impegno inserito correttamente");
+        }
+
     }
 
     public static void deleteImpegno() throws IOException {
@@ -95,7 +103,7 @@ public class Agenda {
         System.out.println("Scrivi l'id dell'impegno da modificare");
         String id = input.readLine();
         System.out.println("Scrivi il nome dell'impegno");
-       String nomeImpegno = input.readLine();
+        String nomeImpegno = input.readLine();
         System.out.println("Scrivi la descrizione dell'impegno");
         String descrizione = input.readLine();
         System.out.println("Scrivi il tipo dell'impegno");
@@ -107,13 +115,28 @@ public class Agenda {
         webService.updateImpegno(nomeImpegno, descrizione, tipo, data, ora, id);
         webService.printResult();
     }
-    
-    public static void getAllImpegno(){
+
+    public static void getAllImpegno() {
         webService.getAllImpegno();
         webService.printResult();
     }
 
-    public static void Menu() throws IOException {
+    public static void parseImpegno() throws IOException, ParserConfigurationException, SAXException {
+        System.out.println("Iserisci l'URL: ");
+        String url = input.readLine();
+
+        ArrayList<Impegno> impegni = new ArrayList();
+        Parser dom = new Parser();
+        impegni = dom.parseDocument(url);
+
+        for (Impegno i : impegni) {
+            System.out.println(i.toString());
+            webService.addImpegno(i.nome, i.descrizione, "pubblico", i.data, "8:00");
+        }
+
+    }
+
+    public static void Menu() throws IOException, ParserConfigurationException, SAXException {
         do {
             System.out.println("Benvenuto: " + username);
             System.out.println("Seleziona cosa vuoi fare: ");
@@ -122,6 +145,7 @@ public class Agenda {
             System.out.println("2- deleteImpegno");
             System.out.println("3- updateImpegno");
             System.out.println("4- getAllImpegno");
+            System.out.println("5- parseDocument");
             System.out.println("0- Esci");
 
             scelta = Integer.parseInt(input.readLine());
@@ -143,6 +167,10 @@ public class Agenda {
                 }
                 case 4: {
                     getAllImpegno();
+                    break;
+                }
+                case 5: {
+                    parseImpegno();
                     break;
                 }
                 case 0: {
